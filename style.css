@@ -1,0 +1,252 @@
+:root {
+    --building-color: #FF9800;
+    --house-color: #0546A2;
+    --shop-color: #0546A2;
+    --warehouse-color: #558B2F;
+  }
+
+  /*
+   * Optional: Makes the sample page fill the window.
+   */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    user-select: none;
+  }
+
+  /*
+   * Always set the map height explicitly to define the size of the div element
+   * that contains the map.
+   */
+  #map {
+    height: 100%;
+    width: 100%;
+    /* max-width:320px;
+    max-height:600px;
+    margin:40px auto;
+    border:10px solid black;
+    border-radius:20px;
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6); */
+  }
+
+  /*
+   * Property styles in unhighlighted state.
+   */
+  .property {
+    align-items: center;
+    background-color: #0546A2;
+    border-radius: 50%;
+    color: #263238;
+    display: flex;
+    font-size: 14px;
+    gap: 15px;
+    height: 40px;
+    justify-content: center;
+    padding: 4px;
+    position: relative;
+    position: relative;
+    transition: all 0.12s ease-out;
+    width:40px;
+  }
+
+  .property::after {
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 9px solid #0546A2;
+    content: "";
+    height: 0;
+    left: 50%;
+    position: absolute;
+    top: 95%;
+    transform: translate(-50%, 0);
+    transition: all 0.12s ease-out;
+    width: 0;
+    z-index: 1;
+  }
+
+  .property .icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+    filter: brightness(0) invert(1);
+
+  }
+
+  .property .icon .icon-gas-pump {
+    height: 20px;
+    width: 20px;
+    background: url(images/logo.uno.png);
+    background-size: cover;
+  }
+
+  .property .details,.property .highlight-logo {
+    display: none;
+    flex-direction: column;
+  }
+  .property .details {
+    flex: 2;
+  }
+  .highlight-logo {
+    flex: 1;
+  }
+  .property .name {
+    color: #000;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+  }
+  .property .address {
+    color: #000;
+    font-size: 11px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+  }
+
+  .property .features {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .property .features > div {
+    align-items: center;
+    background: #F5F5F5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    display: flex;
+    font-size: 10px;
+    gap: 5px;
+    padding: 5px;
+  }
+
+  /*
+   * Property styles in highlighted state.
+   */
+  .property.highlight {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+    height: 60px;
+    padding: 8px 10px;
+    width: auto;
+  }
+
+  .property.highlight::after {
+    border-top: 9px solid #FFFFFF;
+  }
+
+  .property.highlight .details, .property.highlight .highlight-logo {
+    display: flex;
+  }
+
+  .property.highlight .icon {
+   display:none;
+  }
+
+
+
+ /* Ensure the map is full screen */
+#map {
+    height: 100vh;
+    width: 100%;
+}
+
+.topTitle{
+    position: fixed;
+    top:20px;
+    left:50%;
+    transform: translateX(-50%);
+     width:80%;
+     max-width:180px;
+    border-radius:20px;
+    background-color:#0546A2;color:white; font-size:12px;font-weight:bold;padding:5px; text-align: center;
+}
+
+/* Bottom Sheet Styles */
+/* #bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, #007bff, #0047ab);
+    color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(0%);
+    z-index: 1000;
+} */
+#bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background:linear-gradient(90deg, #0f5ece, #0546A2);
+    color: white;
+
+    box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transition: transform 0.12s ease-out;
+    height: 90vh; /* Ensure smooth scrolling when expanded */
+    transform: translateY(60%); /* Start in half-open state */
+    z-index: 1000;
+    touch-action: none;
+}
+/* Drag Handle */
+#drag-handle {
+    width: 120px;
+    height: 45px;
+
+
+    margin: 20px auto 0;
+    cursor: grab;
+}
+
+/* List container */
+.list-container {
+    padding: 0 20px 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.list-container h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* List Items */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 12px;
+    /* background: rgba(255, 255, 255, 0.1); */
+    border-bottom: 1px solid #326397;
+   padding: 10px;
+    cursor: pointer;
+}
+li p{font-size: 9px; margin:5px 0 10px}
+li img {
+    width: 40px;
+    height: 30px;
+
+    margin-right: 10px;
+}
+
+li:hover {
+  background: rgb(54 149 239 / 10%);
+  -webkit-tap-highlight-color: transparent;
+}
