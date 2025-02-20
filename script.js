@@ -12,11 +12,11 @@ async function initMap() {
         colorScheme: ColorScheme.LIGHT,
         mapId: "4504f8b37365c3d0",
         disableDefaultUI: true,  // Removes default UI elements
-        styles: [  // Optional: Custom minimal style
-            { featureType: "poi", stylers: [{ visibility: "off" }] },  // Hide POIs
-            { featureType: "transit", stylers: [{ visibility: "off" }] },  // Hide transit
-            { featureType: "road", elementType: "labels", stylers: [{ visibility: "off" }] } // Hide road labels
-        ]
+        // styles: [  // Optional: Custom minimal style
+        //     { featureType: "poi", stylers: [{ visibility: "off" }] },  // Hide POIs
+        //     { featureType: "transit", stylers: [{ visibility: "off" }] },  // Hide transit
+        //     { featureType: "road", elementType: "labels", stylers: [{ visibility: "off" }] } // Hide road labels
+        // ]
     });
 
     let openMarker = null; // Store the currently open marker
