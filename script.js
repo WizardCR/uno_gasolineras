@@ -4,10 +4,10 @@ async function initMap() {
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
     const { ColorScheme } = await google.maps.importLibrary("core");
 
-    const center = { lat: 14.3649, lng: -88.0284 };
+    const center = { lat: 14.1649, lng: -88.0284 };
 
     const map = new Map(document.getElementById("map"), {
-        zoom: 8,
+        zoom: 14,
         center,
         colorScheme: ColorScheme.LIGHT,
         mapId: "4504f8b37365c3d0",
@@ -18,6 +18,39 @@ async function initMap() {
         //     { featureType: "road", elementType: "labels", stylers: [{ visibility: "off" }] } // Hide road labels
         // ]
     });
+
+    // Try to get the user's location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                let userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+
+                // Center the map on the user's location
+                map.setCenter(userLocation);
+
+                // // Add a marker at the user's location
+                // new google.maps.Marker({
+                //     position: userLocation,
+                //     map,
+                //     title: "Your Location",
+                //     icon: {
+                //         url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                //         scaledSize: new google.maps.Size(40, 40),
+                //     },
+                // });
+            },
+            () => {
+                console.warn("Geolocation permission denied. Using default location.");
+            }
+        );
+    } else {
+        console.warn("Geolocation is not supported by this browser.");
+    }
+
+
 
     let openMarker = null; // Store the currently open marker
     const locationList = document.getElementById("location-list");
@@ -158,7 +191,7 @@ const properties = [
         image: "images/gasolinera.webp",
         logo: "images/logo.uno.blue.svg",
         type: "gas-pump",
-        position: { lat: 14.1065588, lng: -87.2030256 },
+        position: { lat: 14.10662, lng: -87.19258 },
     },
     {
         name: "UNO Tepeyac",
@@ -168,7 +201,7 @@ const properties = [
         image: "images/pronto.png",
         logo: "images/logo.pronto.png",
         type: "gas-pump",
-        position: {  lat: 14.0907821, lng: -87.2006791 },
+        position: {  lat: 14.090884, lng: -87.190241 },
     },
     {
         name: "UNO Boulevard Morazán",
@@ -178,7 +211,7 @@ const properties = [
         image: "images/pronto.png",
         logo: "images/logo.pronto.png",
         type: "gas-pump",
-        position: {  lat: 14.0907784, lng: -87.2315791 },
+        position: {  lat: 14.100925, lng: -87.173396 },
     },
     {
         name: "UNO Florencia",
@@ -188,7 +221,7 @@ const properties = [
         image: "images/pronto.png",
         logo: "images/logo.pronto.png",
         type: "gas-pump",
-        position: {  lat: 14.0848221, lng: -87.1912034  },
+        position: {  lat: 14.0848221, lng: -87.180849  },
     },
      {
         name: "UNO Bermejo La Antorcha",
@@ -228,7 +261,7 @@ const properties = [
         image: "images/pronto.png",
         logo: "images/logo.pronto.png",
         type: "gas-pump",
-        position: {  lat: 15.5273632, lng: -88.0508454  },
+        position: {  lat: 15.49288, lng: -88.005306  },
     },
 ];
 
