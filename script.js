@@ -32,15 +32,15 @@ async function initMap() {
                 map.setCenter(userLocation);
 
                 // // Add a marker at the user's location
-                // new google.maps.Marker({
-                //     position: userLocation,
-                //     map,
-                //     title: "Your Location",
-                //     icon: {
-                //         url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-                //         scaledSize: new google.maps.Size(40, 40),
-                //     },
-                // });
+                new google.maps.Marker({
+                    position: userLocation,
+                    map,
+                    title: "Your Location",
+                    icon: {
+                        url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                        scaledSize: new google.maps.Size(40, 40),
+                    },
+                });
             },
             () => {
                 console.warn("Geolocation permission denied. Using default location.");
